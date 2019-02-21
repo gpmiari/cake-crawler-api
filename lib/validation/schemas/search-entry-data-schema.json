@@ -1,0 +1,12 @@
+{
+  "id": "serachEntryData",
+  "required": [
+    "keyword"
+  ],
+  "properties": {
+    "keyword": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

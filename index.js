@@ -1,8 +1,16 @@
 const server = require('./config');
 require('dotenv').config();
 const pkg = require('./package.json');
+const database = require('./lib/db');
 
-const serverPort = process.env.PORT;
+const serverPort = process.env.PORT || 3000;
+
+database.connect(process.env.MONGO_URL)
+  .catch((err) => {
+    console.error('Shutdown the application because an error occurred '
+      + 'when connecting to database', err);
+    process.exit(1);
+  });
 
 const shutdown = event => () => {
     console.warn('Server receive signal to shutdown, with event %s', event);
