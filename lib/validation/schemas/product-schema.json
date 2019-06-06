@@ -1,0 +1,33 @@
+{
+  "id": "product",
+  "required": [
+    "name",
+    "price",
+    "oldPrice",
+    "stock",
+    "image",
+    "searched"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "price": {
+      "type": "number",
+      "minLength": 1
+    },
+    "oldPrice": {
+      "type": "number"
+    },
+    "stock": {
+      "type": "number"
+    },
+    "image": {
+      "type": "string"
+    },
+    "searched": {
+      "type": "object"
+    }
+  }
+}
