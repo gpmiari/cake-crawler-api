@@ -8,7 +8,7 @@
     "test": "npm run lint && npm run coverage",
     "lint": "./node_modules/.bin/eslint config/* lib/* test/**/* index.js",
     "dev": "npm run lint && nodemon index.js",
-    "start": "node index.js"
+    "start": "npm run lint && node index.js"
   },
   "repository": {
     "type": "git",
