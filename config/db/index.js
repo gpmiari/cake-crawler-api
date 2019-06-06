@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const { promisify } = require('util');
+const logger = require('../logger').logger();
 
 const Database = {};
 const self = Database;
@@ -9,11 +10,11 @@ let mongoClient;
 
 Database.connect = async (uri) => {
   try {
-    console.debug('Database trying to connect.');
+    logger.debug('Database trying to connect.');
     mongoClient = await MongoClient.connect(uri, { useNewUrlParser: true });
-    console.info('Database connected.');
+    logger.info('Database connected.');
   } catch (err) {
-    console.error('Database failed to connect. - ', err.message);
+    logger.error('Database failed to connect. - ', err.message);
     throw new Error(err);
   }
 };
@@ -43,13 +44,13 @@ Database.dropCollections = async (...theArgs) => {
 };
 
 Database.close = async () => {
-  console.debug('Database trying to disconnect');
+  logger.debug('Database trying to disconnect');
   if (mongoClient) {
     try {
       await mongoClient.close();
-      console.info('Database disconnected');
+      logger.info('Database disconnected');
     } catch (err) {
-      console.error('Error on closing database', err);
+      logger.error('Error on closing database', err);
     }
   }
 };

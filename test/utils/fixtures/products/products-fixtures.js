@@ -5,7 +5,7 @@ const chance = new Chance();
 const create = (data = {}) => {
   const result = {
     name: data.name || chance.word(),
-    price: data.price || chance.floating({ fixed: 2 })
+    price: data.price || chance.floating({ fixed: 2 }),
   };
 
   if (data.stock) {
@@ -24,5 +24,5 @@ const create = (data = {}) => {
 };
 
 module.exports = {
-  create
+  create,
 };

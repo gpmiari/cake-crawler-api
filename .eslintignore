@@ -1,0 +1,13 @@
+.git/
+.gitignore
+.gitmodules
+.eslintrc
+.eslintignore
+circle.yml
+sonar-project.properties
+docker-compose.override.yml
+
+log/
+node_modules/
+tasks/
+coverage/

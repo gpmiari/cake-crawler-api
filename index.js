@@ -1,46 +1,46 @@
-const server = require('./config');
-require('dotenv').config();
-const pkg = require('./package.json');
-const database = require('./lib/db');
+const { app, logger, db } = require('./config');
+require('dotenv').load();
+const pack = require('./package');
 
-const serverPort = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
-database.connect(process.env.MONGO_URL)
+process.title = pack.name;
+
+db.connect(process.env.MONGO_URL)
   .catch((err) => {
-    console.error('Shutdown the application because an error occurred '
+    logger.error('Shutdown the application because an error occurred '
       + 'when connecting to database', err);
     process.exit(1);
   });
 
 const shutdown = event => () => {
-    console.warn('Server receive signal to shutdown, with event %s', event);
-    process.exit(0);
+  logger.info(`Server receive signal to shutdown, with event ${event}`);
+  process.exit(0);
 };
-
-process.title = pkg.name;
 
 process.on('SIGTERM', shutdown('SIGTERM'))
   .on('SIGINT', shutdown('SIGINT'))
   .on('SIGHUP', shutdown('SIGHUP'))
   .on('uncaughtException', (er) => {
-    console.error(`uncaughtException caught the error: ${er.message}`);
+    logger.info(`uncaughtException caught the error: ${er.message}`);
     throw er;
   })
   .on('exit', (code) => {
-    console.info('Node process exit with code: %s', code);
-    // database.close();
+    logger.info(`Node process exit with code: ${code}`);
+    db.close();
   });
-server.listen(serverPort, (err) => {
+
+app.listen(port, (err) => {
   if (err) {
-    console.error('Error on listen port. ', err.message);
+    logger.error(`Error on listen port. ${err.message}`);
   } else {
-    console.info('------------------------------------------------------------------');
-    console.info(`${pkg.name} - Version: ${pkg.version}`);
-    console.info('------------------------------------------------------------------');
-    console.info(`Express server listening on port: ${serverPort}`);
-    console.info('------------------------------------------------------------------');
+    logger.info('------------------------------------------------------------------');
+    logger.info(`${pack.name} - Version: ${pack.version}`);
+    logger.info('------------------------------------------------------------------');
+    logger.info(`Express server listening on port: ${port}`);
+    logger.info('------------------------------------------------------------------');
   }
-  server.on('close', () => {
-    console.info('Shutdown the application server');
+  app.on('close', () => {
+    logger.info('Shutdown the application server');
   });
 });

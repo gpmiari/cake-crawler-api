@@ -1,10 +1,12 @@
 const { assert } = require('chai');
 const sinon = require('sinon');
 const supertest = require('supertest');
-const db = require('../../../lib/db');
+const db = require('../../../config/db');
 const nocks = require('../../utils/nocks');
 const fixtures = require('../../utils/fixtures');
-const app = require('../../../config');
+const app = require('../../../config/express');
+
+const query = 'leite';
 
 describe('Post api/products/ testes funcionais ', () => {
   let sandbox;
@@ -18,11 +20,29 @@ describe('Post api/products/ testes funcionais ', () => {
       .catch(() => {
       });
   });
-
   describe('Caso(s) de sucesso: Deve', () => {
-    it('criar 2 notificações de tela para o usuário de cada evento e retornar 204', async () => {
-
+    it.only('buscar os produtos com uma keyword', async () => {
+      const productsFixture = fixtures.products.productsFixture.create({});
+      const nockClientSuperNosso = nocks.searchSupernosso({
+        requestBody: {
+          pageNumber: 0,
+          pageSize: 50,
+          query,
+        },
+        responseBody: {
+          elements: [
+            productsFixture,
+          ],
+        },
+      });
+      const res = await supertest(app)
+        .post('/api/products/')
+        .send({
+          keyword: query,
+        })
+        .set('Content-Type', 'application/json');
+      assert.strictEqual(200, res.statusCode);
+      assert.isTrue(nockClientSuperNosso.isDone());
     });
   });
-
 });
