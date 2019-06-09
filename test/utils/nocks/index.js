@@ -29,4 +29,16 @@ nocks.searchApoioMineiro = (options = {}) => {
     .reply(options.statusCode || 200, options.responseBody || []);
 };
 
+nocks.searchSuperJs = (options = {}) => {
+  const url = 'https://www.supersj.com.br/api/buscaAmigavel';
+  if (options.errorMessage) {
+    return nock(url)
+      .get(`?descricao=${options.query}`, options.requestBody)
+      .replyWithError(options.errorMessage);
+  }
+  return nock(url)
+    .get(`?descricao=${options.query}`, options.requestBody)
+    .reply(options.statusCode || 200, options.responseBody || []);
+};
+
 module.exports = nocks;
