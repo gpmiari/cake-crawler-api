@@ -43,6 +43,14 @@ describe('Post api/products/ testes funcionais ', () => {
           ],
         },
       });
+      const nockSuperJs = nocks.searchSuperJs({
+        query,
+        responseBody: {
+          Produtos: [
+            productsFixture,
+          ],
+        },
+      });
       const res = await supertest(app)
         .post('/api/products/')
         .send({
@@ -50,9 +58,10 @@ describe('Post api/products/ testes funcionais ', () => {
         })
         .set('Content-Type', 'application/json');
       assert.strictEqual(200, res.statusCode);
-      assert.strictEqual(2, res.body.length);
+      assert.strictEqual(3, res.body.length);
       assert.isTrue(nockClientSuperNosso.isDone());
       assert.isTrue(nockApoioMineiro.isDone());
+      assert.isTrue(nockSuperJs.isDone());
     });
     it('buscar os produtos com uma keyword e encontrar em apenas um supermercado e retornar status 200', async () => {
       const productsFixture = fixtures.products.productsFixture.create({});
@@ -74,6 +83,12 @@ describe('Post api/products/ testes funcionais ', () => {
           prods: [],
         },
       });
+      const nockSuperJs = nocks.searchSuperJs({
+        query,
+        responseBody: {
+          Produtos: [],
+        },
+      });
       const res = await supertest(app)
         .post('/api/products/')
         .send({
@@ -84,6 +99,7 @@ describe('Post api/products/ testes funcionais ', () => {
       assert.strictEqual(1, res.body.length);
       assert.isTrue(nockClientSuperNosso.isDone());
       assert.isTrue(nockApoioMineiro.isDone());
+      assert.isTrue(nockSuperJs.isDone());
     });
     it('buscar os produtos com uma keyword e não encontrar em nenhum supermercado e retornar status 404', async () => {
       const nockClientSuperNosso = nocks.searchSupernosso({
@@ -102,6 +118,12 @@ describe('Post api/products/ testes funcionais ', () => {
           prods: [],
         },
       });
+      const nockSuperJs = nocks.searchSuperJs({
+        query,
+        responseBody: {
+          Produtos: [],
+        },
+      });
       const res = await supertest(app)
         .post('/api/products/')
         .send({
@@ -111,6 +133,7 @@ describe('Post api/products/ testes funcionais ', () => {
       assert.strictEqual(404, res.statusCode);
       assert.isTrue(nockClientSuperNosso.isDone());
       assert.isTrue(nockApoioMineiro.isDone());
+      assert.isTrue(nockSuperJs.isDone());
     });
   });
 });
