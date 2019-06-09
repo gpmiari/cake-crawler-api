@@ -35,6 +35,14 @@ describe('Post api/products/ testes funcionais ', () => {
           ],
         },
       });
+      const nockApoioMineiro = nocks.searchApoioMineiro({
+        query,
+        responseBody: {
+          prods: [
+            productsFixture,
+          ],
+        },
+      });
       const res = await supertest(app)
         .post('/api/products/')
         .send({
@@ -43,6 +51,7 @@ describe('Post api/products/ testes funcionais ', () => {
         .set('Content-Type', 'application/json');
       assert.strictEqual(200, res.statusCode);
       assert.isTrue(nockClientSuperNosso.isDone());
+      assert.isTrue(nockApoioMineiro.isDone());
     });
   });
 });

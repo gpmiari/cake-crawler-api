@@ -6,7 +6,8 @@
     "oldPrice",
     "stock",
     "image",
-    "searched"
+    "searched",
+    "store"
   ],
   "properties": {
     "name": {
@@ -28,6 +29,9 @@
     },
     "searched": {
       "type": "object"
+    },
+    "store": {
+      "type": "string"
     }
   }
 }
