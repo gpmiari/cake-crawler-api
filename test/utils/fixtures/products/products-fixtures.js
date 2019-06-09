@@ -6,6 +6,7 @@ const create = (data = {}) => {
   const result = {
     name: data.name || chance.word(),
     price: data.price || chance.floating({ fixed: 2 }),
+    store: (data.store || chance.word()),
   };
 
   if (data.stock) {
