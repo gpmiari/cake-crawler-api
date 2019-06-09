@@ -8,7 +8,9 @@
     "test": "npm run lint && npm run coverage",
     "lint": "./node_modules/.bin/eslint config/* lib/* test/**/* index.js",
     "dev": "npm run lint && nodemon index.js",
-    "start": "npm run lint && node index.js"
+    "start": "npm run lint && node index.js",
+    "debug": "node --inspect-brk index.js",
+    "debugtest": "./node_modules/mocha/bin/mocha --recursive --inspect-brk"
   },
   "repository": {
     "type": "git",
