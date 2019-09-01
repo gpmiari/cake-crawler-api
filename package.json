@@ -1,6 +1,6 @@
 {
   "name": "cake-crawler",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "description": "Crawler for get prices",
   "main": "index.js",
   "scripts": {
