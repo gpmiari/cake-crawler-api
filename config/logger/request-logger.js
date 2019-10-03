@@ -1,6 +1,6 @@
 const morgan = require('morgan');
 
-morgan.token('reqbody', req => JSON.stringify(req.body));
+morgan.token('reqbody', (req) => JSON.stringify(req.body));
 
 const skip = (req, res) => res.statusCode < 400;
 

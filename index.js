@@ -13,7 +13,7 @@ db.connect(process.env.MONGO_URL)
     process.exit(1);
   });
 
-const shutdown = event => () => {
+const shutdown = (event) => () => {
   logger.info(`Server receive signal to shutdown, with event ${event}`);
   process.exit(0);
 };
