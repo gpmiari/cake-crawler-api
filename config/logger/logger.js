@@ -33,7 +33,7 @@ const options = {
   },
 };
 
-const contemBrilhoLogger = (() => {
+const myLogger = (() => {
   let loggerWinston;
 
   const logger = () => {
@@ -65,4 +65,4 @@ const contemBrilhoLogger = (() => {
   };
 })();
 
-module.exports = contemBrilhoLogger;
+module.exports = myLogger;

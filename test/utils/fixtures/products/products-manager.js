@@ -8,6 +8,6 @@ productsManager.populate = async (data) => {
   return productsManager.save(fixture);
 };
 
-productsManager.save = async data => productsModel.insertOne(data);
+productsManager.save = async (data) => productsModel.insertOne(data);
 
 module.exports = productsManager;
