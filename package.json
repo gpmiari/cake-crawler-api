@@ -54,7 +54,7 @@
     "eslint-plugin-import": "^2.22.0",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^8.1.0",
-    "nock": "^13.0.3",
+    "nock": "^13.0.4",
     "supertest": "^4.0.2"
   }
 }
