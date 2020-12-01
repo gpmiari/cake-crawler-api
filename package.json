@@ -50,7 +50,7 @@
     "chance": "^1.1.7",
     "depcheck": "^1.2.0",
     "eslint": "^7.12.1",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^8.2.0",
