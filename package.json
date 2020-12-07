@@ -38,7 +38,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
-    "mongodb": "^3.6.0",
+    "mongodb": "^3.6.3",
     "morgan": "^1.9.1",
     "request": "^2.88.0",
     "sinon": "^9.2.1",
@@ -49,12 +49,12 @@
     "chai": "^4.2.0",
     "chance": "^1.1.7",
     "depcheck": "^1.2.0",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^8.2.0",
     "nock": "^13.0.5",
-    "supertest": "^6.0.0"
+    "supertest": "^6.0.1"
   }
 }
