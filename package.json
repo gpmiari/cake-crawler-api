@@ -55,6 +55,6 @@
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^8.2.1",
     "nock": "^13.0.5",
-    "supertest": "^6.0.1"
+    "supertest": "^6.1.1"
   }
 }
